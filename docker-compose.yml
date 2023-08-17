@@ -1,0 +1,26 @@
+version: '2.20.2'
+
+services:
+  ec_db:
+    image: postgres:15
+    environment:
+      POSTGRES_USER: root
+      POSTGRES_PASSWORD: root
+      POSTGRES_HOST_AUTH_METHOD: trust
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+  ec_app:
+    build: ./
+    command: bash -c "rm -f tmp/pids/server.pid && bundle exec rails s -p 3000 -b '0.0.0.0'"
+    volumes:
+      - .:/EC_app/
+    ports:
+      - "3000:3000"
+    depends_on:
+      - ec_db
+
+volumes:
+  postgres_data:
