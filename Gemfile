@@ -8,7 +8,6 @@ gem "puma", "~> 5.0"
 gem "importmap-rails"
 gem "turbo-rails"
 gem "stimulus-rails"
-gem 'webpacker'
 gem "sprockets-rails"
 gem "cssbundling-rails"
 gem "jsbundling-rails"
@@ -22,6 +21,10 @@ gem 'html2haml', require: false
 gem 'omniauth', '~> 2.1', '>= 2.1.2'
 gem 'omniauth-github', '~> 2.0', '>= 2.0.1'
 gem 'omniauth-rails_csrf_protection', '~> 1.0', '>= 1.0.1'
+
+gem 'sassc', '~> 2.0'
+# スキーマ情報
+gem 'annotate'
 
 group :development, :test do
   gem "debug", platforms: %i[ mri mingw x64_mingw ]

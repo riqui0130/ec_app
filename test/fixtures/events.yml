@@ -1,0 +1,34 @@
+# == Schema Information
+#
+# Table name: events
+#
+#  id         :bigint           not null, primary key
+#  content    :text             not null
+#  end_at     :datetime         not null
+#  name       :string           not null
+#  place      :string           not null
+#  start_at   :datetime         not null
+#  created_at :datetime         not null
+#  updated_at :datetime         not null
+#  owner_id   :bigint           not null
+#
+# Indexes
+#
+#  index_events_on_owner_id  (owner_id)
+#
+
+one:
+  owner_id: 
+  name: MyString
+  place: MyString
+  start_at: 2024-03-23 09:27:17
+  end_at: 2024-03-23 09:27:17
+  content: MyText
+
+two:
+  owner_id: 
+  name: MyString
+  place: MyString
+  start_at: 2024-03-23 09:27:17
+  end_at: 2024-03-23 09:27:17
+  content: MyText
