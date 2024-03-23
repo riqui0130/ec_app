@@ -1,70 +1,58 @@
-require "active_support/core_ext/integer/time"
-
+# 設定ファイルで指定された設定は、config/application.rbの設定に優先して適用されます。
 Rails.application.configure do
-  # Settings specified here will take precedence over those in config/application.rb.
 
-  # In the development environment your application's code is reloaded any time
-  # it changes. This slows down response time but is perfect for development
-  # since you don't have to restart the web server when you make code changes.
+  # 開発環境ではアプリケーションのコードが変更されるたびにリロードされます。これはレスポンスタイムを遅くしますが、コード変更時にWebサーバーを再起動する必要がないため、開発には適しています。
   config.cache_classes = false
 
-  # Do not eager load code on boot.
+  # 起動時にコードを事前に読み込まない。
   config.eager_load = false
 
-  # Show full error reports.
+  # 完全なエラーレポートを表示します。
   config.consider_all_requests_local = true
 
-  # Enable server timing
+  # サーバータイミングを有効にします。
   config.server_timing = true
 
-  # Enable/disable caching. By default caching is disabled.
-  # Run rails dev:cache to toggle caching.
+  # キャッシングを有効/無効にします。デフォルトではキャッシングは無効です。
   if Rails.root.join("tmp/caching-dev.txt").exist?
     config.action_controller.perform_caching = true
-    config.action_controller.enable_fragment_cache_logging = true
-
     config.cache_store = :memory_store
     config.public_file_server.headers = {
       "Cache-Control" => "public, max-age=#{2.days.to_i}"
     }
   else
     config.action_controller.perform_caching = false
-
     config.cache_store = :null_store
   end
 
-  # Store uploaded files on the local file system (see config/storage.yml for options).
+  # アップロードされたファイルをローカルファイルシステムに保存します（オプションについてはconfig/storage.ymlを参照）。
   config.active_storage.service = :local
 
-  # Don't care if the mailer can't send.
+  # メーラーが送信に失敗しても気にしない。
   config.action_mailer.raise_delivery_errors = false
 
+  # メールのキャッシングを無効にします。
   config.action_mailer.perform_caching = false
 
-  # Print deprecation notices to the Rails logger.
+  # メールのプレビュー用設定
+  config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
+
+
+  # 非推奨の通知をRailsログに出力します。
   config.active_support.deprecation = :log
 
-  # Raise exceptions for disallowed deprecations.
+  # 許可されていない非推奨の使用に対して例外を発生させます。
   config.active_support.disallowed_deprecation = :raise
 
-  # Tell Active Support which deprecation messages to disallow.
+  # Active Supportがどの非推奨のメッセージを許可しないかを指定します。
   config.active_support.disallowed_deprecation_warnings = []
 
-  # Raise an error on page load if there are pending migrations.
+  # 保留中のマイグレーションがある場合にページの読み込み時にエラーを発生させます。
   config.active_record.migration_error = :page_load
 
-  # Highlight code that triggered database queries in logs.
+  # データベースクエリをトリガーしたコードをログにハイライトします。
   config.active_record.verbose_query_logs = true
 
-  # Suppress logger output for asset requests.
-  config.assets.quiet = true
+  config.web_console.permissions = '172.21.0.0/16'
 
-  # Raises error for missing translations.
-  # config.i18n.raise_on_missing_translations = true
-
-  # Annotate rendered view with file names.
-  # config.action_view.annotate_rendered_view_with_filenames = true
-
-  # Uncomment if you wish to allow Action Cable access from any origin.
-  # config.action_cable.disable_request_forgery_protection = true
 end
